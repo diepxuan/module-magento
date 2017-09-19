@@ -8,6 +8,21 @@ class Tree extends \Magento\Cms\Block\Adminhtml\Wysiwyg\Images\Tree
 {
 
     /**
+     * @param \Magento\Backend\Block\Template\Context $context
+     * @param \Magento\Cms\Helper\Wysiwyg\Images      $cmsWysiwygImages
+     * @param \Magento\Framework\Registry             $registry
+     * @param array                                   $data
+     */
+    public function __construct(
+        \Magento\Backend\Block\Template\Context $context,
+        \Magento\Cms\Helper\Wysiwyg\Images      $cmsWysiwygImages,
+        \Magento\Framework\Registry             $registry,
+        array                                   $data = []
+    ) {
+        parent::__construct($context, $cmsWysiwygImages, $registry, $data);
+    }
+
+    /**
      * Json tree builder
      *
      * @return string
