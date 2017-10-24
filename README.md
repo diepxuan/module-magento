@@ -5,13 +5,6 @@ Magento 2 module
 [![Magento 2](https://img.shields.io/badge/Magento-%3E=2.1-blue.svg)](https://github.com/magento/magento2/tree/2.1)
 [![PHP >= 5.5.22](https://img.shields.io/badge/PHP-%3E=5.6.5-blue.svg)](https://packagist.org/packages/diepxuan/module-magento)
 
-- fix magento 2 bug when store media in db
-
-
-Magento
---------------
-
-
 
 Installation
 ------------
