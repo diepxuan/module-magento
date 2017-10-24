@@ -1,6 +1,7 @@
 <?php
 /**
  * Copyright © 2017 Dxvn, Inc. All rights reserved.
+ * @author  Tran Ngoc Duc <caothu91@gmail.com>
  */
 namespace Diepxuan\Magento\Model\Wysiwyg\Images;
 
