@@ -1,21 +1,20 @@
 <?php
 
-namespace Diepxuan\Magento\App\FrontController\Plugin;
+namespace Diepxuan\Magento\Plugin\App;
 
 /**
- * Plugin to set default store
- * @deprecated
+ * Class FrontController
+ * @package Diepxuan\Magento\Plugin\App
  */
-class RequestPreprocessor
+class FrontController
 {
-
     /**
      * @var \Diepxuan\Magento\Model\StoreSwitch
      */
     protected $storeSwitch;
 
     /**
-     * StoreSwitch constructor.
+     * FrontController constructor.
      *
      * @param \Diepxuan\Magento\Model\StoreSwitch $storeSwitch
      */
@@ -35,6 +34,7 @@ class RequestPreprocessor
         \Closure $proceed,
         \Magento\Framework\App\RequestInterface $request
     ) {
-        return $this->storeSwitch->execute();
+        return $this->storeSwitch->execute($subject, $proceed, $request);
     }
+
 }
