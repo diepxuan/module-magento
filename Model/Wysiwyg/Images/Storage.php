@@ -1,16 +1,22 @@
 <?php
 /**
- * Copyright © 2017 Dxvn, Inc. All rights reserved.
+ * Copyright © Dxvn, Inc. All rights reserved.
  * @author  Tran Ngoc Duc <caothu91@gmail.com>
  */
+
 namespace Diepxuan\Magento\Model\Wysiwyg\Images;
 
+/**
+ * Class Storage
+ * @package Diepxuan\Magento\Model\Wysiwyg\Images
+ */
 class Storage extends \Magento\Cms\Model\Wysiwyg\Images\Storage
 {
     /**
      * Create sub directories if DB storage is used
      *
      * @param string $path
+     *
      * @return void
      */
     protected function createSubDirectories($path)
@@ -23,7 +29,7 @@ class Storage extends \Magento\Cms\Model\Wysiwyg\Images\Storage
                 if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN') {
                     $fullPath = ltrim($directory['name'], '/');
                 } else {
-                    $fullPath = rtrim($path, '/') . '/' . $directory['name'];
+                    $fullPath = rtrim($path, '/').'/'.$directory['name'];
                 }
                 $this->_directory->create($fullPath);
             }

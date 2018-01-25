@@ -1,12 +1,24 @@
 <?php
+/**
+ * Copyright © Dxvn, Inc. All rights reserved.
+ * @author  Tran Ngoc Duc <caothu91@gmail.com>
+ */
 
 namespace Diepxuan\Magento\Model;
+
+use Magento\Framework\App\RequestInterface;
+use Magento\Framework\Model\AbstractModel;
+use Magento\Framework\Model\Context;
+use Magento\Framework\Registry;
+use Magento\Framework\UrlInterface;
+use Magento\Store\Api\StoreRepositoryInterface;
+use Magento\Store\Model\BaseUrlChecker;
 
 /**
  * Class StoreSwitch
  * @package Diepxuan\Magento\Model
  */
-class StoreSwitch extends \Magento\Framework\Model\AbstractModel
+class StoreSwitch extends AbstractModel
 {
     /**
      * @var \Magento\Store\Model\BaseUrlChecker
@@ -19,59 +31,66 @@ class StoreSwitch extends \Magento\Framework\Model\AbstractModel
     protected $request;
 
     /**
-     * @var \Magento\Store\Model\StoreManagerInterface
+     * @var \Magento\Store\Api\StoreRepositoryInterface
      */
-    protected $storeManager;
+    protected $storeRepository;
+
+    /**
+     * @var bool
+     */
+    protected $isInitialized = false;
+
+    /**
+     * @var bool
+     */
+    protected $storeId = false;
 
     public function __construct(
-        \Magento\Framework\Model\Context $context,
-        \Magento\Framework\Registry $registry,
-        \Magento\Store\Model\BaseUrlChecker $baseUrlChecker,
-        \Magento\Framework\App\RequestInterface $request,
-        \Magento\Store\Model\StoreManagerInterface $storeManager
+        Context $context,
+        Registry $registry,
+        BaseUrlChecker $baseUrlChecker,
+        RequestInterface $request,
+        StoreRepositoryInterface $storeRepository
     ) {
         parent::__construct($context, $registry);
 
-        $this->baseUrlChecker = $baseUrlChecker;
-        $this->request        = $request;
-        $this->storeManager   = $storeManager;
+        $this->baseUrlChecker  = $baseUrlChecker;
+        $this->request         = $request;
+        $this->storeRepository = $storeRepository;
     }
 
     /**
-     * @param \Magento\Framework\App\FrontController|null  $subject
-     * @param \Closure|null                                $proceed
-     * @param \Magento\Framework\App\RequestInterface|null $request
-     *
-     * @return mixed
+     * @return bool|int
      */
-    public
-    function execute(
-        \Magento\Framework\App\FrontController $subject = null,
-        \Closure $proceed = null,
-        \Magento\Framework\App\RequestInterface $request = null
-    ) {
-        if ($request) {
-            $this->request = $request;
+    public function getStoreId()
+    {
+        if ($this->isInitialized()) {
+            return $this->storeId;
         }
 
-        $this->storeSwitch();
+        $isSecure = $this->request->isSecure();
 
-        if ($proceed) {
-            return $proceed($request);
+        foreach ($this->storeRepository->getList() as $store) {
+            $baseUrl = $store->getBaseUrl(UrlInterface::URL_TYPE_WEB, $isSecure);
+
+            if ($this->baseUrlChecker($baseUrl)) {
+                $this->isInitialized = true;
+                $this->storeId       = $store->getId();
+                $this->getLogger()->critical($store->getName());
+
+                break;
+            }
         }
+
+        return $this->storeId;
     }
 
-    protected function storeSwitch()
+    /**
+     * @return bool
+     */
+    public function isInitialized()
     {
-        $currentStoreBaseUrl = $this->storeManager->getStore()->getBaseUrl(
-            \Magento\Framework\UrlInterface::URL_TYPE_WEB,
-            $this->storeManager->getStore()->isCurrentlySecure()
-        );
-        if ($this->baseUrlChecker($currentStoreBaseUrl)) {
-            return;
-        }
-
-        $this->autoStoreSwitch();
+        return $this->isInitialized;
     }
 
     /**
@@ -84,17 +103,12 @@ class StoreSwitch extends \Magento\Framework\Model\AbstractModel
         return $this->baseUrlChecker->execute(parse_url($baseUrl), $this->request);
     }
 
-    protected function autoStoreSwitch()
+    /**
+     * @return \Psr\Log\LoggerInterface
+     */
+    public function getLogger()
     {
-        foreach ($this->storeManager->getStores() as $store) {
-
-            $baseUrl = $store->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_WEB, $this->request->isSecure());
-            if ($this->baseUrlChecker($baseUrl)) {
-                $this->storeManager->setCurrentStore($store->getId());
-
-                return;
-            }
-        }
+        return $this->_logger;
     }
 
 }
