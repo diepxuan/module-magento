@@ -2,7 +2,7 @@
     "name": "diepxuan/module-magento",
     "description": "Amends for Magento 2",
     "type": "magento2-module",
-    "version": "0.0.2.3",
+    "version": "0.0.2.4",
     "authors": [
         {
             "name": "Tran Ngoc Duc",
