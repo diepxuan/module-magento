@@ -14,9 +14,9 @@ use Psr\Log\LoggerInterface;
 /**
  * Class FrontController
  * @package Diepxuan\Magento\Plugin\App
+ * @deprecated 0.0.2.4
  */
-class FrontController
-{
+class FrontController {
     /**
      * @var \Diepxuan\Magento\Model\StoreSwitch
      */
@@ -35,9 +35,9 @@ class FrontController
     /**
      * FrontController constructor.
      *
-     * @param \Diepxuan\Magento\Model\StoreSwitch        $storeSwitch
+     * @param \Diepxuan\Magento\Model\StoreSwitch $storeSwitch
      * @param \Magento\Store\Model\StoreManagerInterface $storeManager
-     * @param \Psr\Log\LoggerInterface                   $logger
+     * @param \Psr\Log\LoggerInterface $logger
      */
     public function __construct(
         StoreSwitch $storeSwitch,
@@ -50,37 +50,43 @@ class FrontController
     }
 
     /**
-     * @param \Magento\Framework\App\FrontController  $subject
-     * @param \Closure                                $proceed
+     * @param \Magento\Framework\App\FrontController $subject
+     * @param \Closure $proceed
      * @param \Magento\Framework\App\RequestInterface $request
      *
      * @return mixed
+     * @deprecated 0.0.2.4
      */
     public function aroundDispatch(
         \Magento\Framework\App\FrontController $subject,
         \Closure $proceed,
         RequestInterface $request
     ) {
-        if (!$this->storeSwitch->isInitialized()) {
-            $this->storeManager->setCurrentStore($this->storeSwitch->getStoreId());
+        if ( $this->notNeededProcess() ) {
+            $this->storeManager->setCurrentStore( $this->storeSwitch->getStoreId() );
         }
 
-        return $proceed($request);
+        return $proceed( $request );
     }
 
     /**
      * @return bool
      */
-    protected function isNeededProcess()
-    {
-        return $this->storeSwitch->isInitialized();
+    protected function isNeededProcess() {
+        return ! $this->storeSwitch->isInitialized();
+    }
+
+    /**
+     * @return bool
+     */
+    protected function notNeededProcess() {
+        return true;
     }
 
     /**
      * @return \Psr\Log\LoggerInterface
      */
-    public function getLogger()
-    {
+    public function getLogger() {
         return $this->logger;
     }
 

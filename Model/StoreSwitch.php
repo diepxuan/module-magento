@@ -18,8 +18,7 @@ use Magento\Store\Model\BaseUrlChecker;
  * Class StoreSwitch
  * @package Diepxuan\Magento\Model
  */
-class StoreSwitch extends AbstractModel
-{
+class StoreSwitch extends AbstractModel {
     /**
      * @var \Magento\Store\Model\BaseUrlChecker
      */
@@ -45,6 +44,15 @@ class StoreSwitch extends AbstractModel
      */
     protected $storeId = false;
 
+    /**
+     * StoreSwitch constructor.
+     *
+     * @param Context $context
+     * @param Registry $registry
+     * @param BaseUrlChecker $baseUrlChecker
+     * @param RequestInterface $request
+     * @param StoreRepositoryInterface $storeRepository
+     */
     public function __construct(
         Context $context,
         Registry $registry,
@@ -52,7 +60,7 @@ class StoreSwitch extends AbstractModel
         RequestInterface $request,
         StoreRepositoryInterface $storeRepository
     ) {
-        parent::__construct($context, $registry);
+        parent::__construct( $context, $registry );
 
         $this->baseUrlChecker  = $baseUrlChecker;
         $this->request         = $request;
@@ -62,21 +70,20 @@ class StoreSwitch extends AbstractModel
     /**
      * @return bool|int
      */
-    public function getStoreId()
-    {
-        if ($this->isInitialized()) {
+    public function getStoreId() {
+        if ( $this->isInitialized() ) {
             return $this->storeId;
         }
 
         $isSecure = $this->request->isSecure();
 
-        foreach ($this->storeRepository->getList() as $store) {
-            $baseUrl = $store->getBaseUrl(UrlInterface::URL_TYPE_WEB, $isSecure);
+        foreach ( $this->storeRepository->getList() as $store ) {
+            $baseUrl = $store->getBaseUrl( UrlInterface::URL_TYPE_WEB, $isSecure );
 
-            if ($this->baseUrlChecker($baseUrl)) {
+            if ( $this->baseUrlChecker( $baseUrl ) ) {
                 $this->isInitialized = true;
                 $this->storeId       = $store->getId();
-                $this->getLogger()->critical($store->getName());
+                $this->getLogger()->critical( $store->getName() );
 
                 break;
             }
@@ -88,8 +95,7 @@ class StoreSwitch extends AbstractModel
     /**
      * @return bool
      */
-    public function isInitialized()
-    {
+    public function isInitialized() {
         return $this->isInitialized;
     }
 
@@ -98,16 +104,14 @@ class StoreSwitch extends AbstractModel
      *
      * @return bool
      */
-    protected function baseUrlChecker($baseUrl)
-    {
-        return $this->baseUrlChecker->execute(parse_url($baseUrl), $this->request);
+    protected function baseUrlChecker( $baseUrl ) {
+        return $this->baseUrlChecker->execute( parse_url( $baseUrl ), $this->request );
     }
 
     /**
      * @return \Psr\Log\LoggerInterface
      */
-    public function getLogger()
-    {
+    public function getLogger() {
         return $this->_logger;
     }
 

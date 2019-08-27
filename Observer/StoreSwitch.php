@@ -14,10 +14,9 @@ use Psr\Log\LoggerInterface;
 /**
  * Class StoreSwitch
  * @package Diepxuan\Magento\Observer
- * @deprecated
+ * @deprecated 0.0.2.4
  */
-class StoreSwitch implements ObserverInterface
-{
+class StoreSwitch implements ObserverInterface {
     /**
      * @var \Diepxuan\Magento\Model\StoreSwitch
      */
@@ -36,9 +35,9 @@ class StoreSwitch implements ObserverInterface
     /**
      * StoreSwitch constructor.
      *
-     * @param \Diepxuan\Magento\Model\StoreSwitch        $storeSwitch
-     * @param \Magento\Store\Model\StoreManagerInterface $storeManager
-     * @param \Psr\Log\LoggerInterface                   $logger
+     * @param \Diepxuan\Magento\Model\StoreSwitch $storeSwitch
+     * @param StoreManagerInterface $storeManager
+     * @param LoggerInterface $logger
      */
     public function __construct(
         \Diepxuan\Magento\Model\StoreSwitch $storeSwitch,
@@ -54,19 +53,33 @@ class StoreSwitch implements ObserverInterface
      * execute
      *
      * @param \Magento\Framework\Event\Observer $observer
+     *
+     * @deprecated 0.0.2.4
      */
-    public function execute(Observer $observer)
-    {
-        if (!$this->storeSwitch->isInitialized()) {
-            $this->storeManager->setCurrentStore($this->storeSwitch->getStoreId());
+    public function execute( Observer $observer ) {
+        if ( $this->notNeededProcess() ) {
+            $this->storeManager->setCurrentStore( $this->storeSwitch->getStoreId() );
         }
+    }
+
+    /**
+     * @return bool
+     */
+    protected function isNeededProcess() {
+        return ! $this->storeSwitch->isInitialized();
+    }
+
+    /**
+     * @return bool
+     */
+    protected function notNeededProcess() {
+        return true;
     }
 
     /**
      * @return \Psr\Log\LoggerInterface
      */
-    public function getLogger()
-    {
+    public function getLogger() {
         return $this->logger;
     }
 
