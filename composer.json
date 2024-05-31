@@ -1,17 +1,13 @@
 {
     "name": "diepxuan/module-magento",
-    "description": "Amends for Magento 2",
+    "description": "DiepXuan amends for Magento 2",
     "type": "magento2-module",
-    "version": "0.0.2.4",
+    "license": "MIT",
     "authors": [
         {
             "name": "Tran Ngoc Duc",
             "email": "ductn@diepxuan.com"
         }
-    ],
-    "license": [
-        "OSL-3.0",
-        "AFL-3.0"
     ],
     "autoload": {
         "files": [
