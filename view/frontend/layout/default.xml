@@ -16,6 +16,12 @@
                     <argument name="path" xsi:type="string">lienhe</argument>
                 </arguments>
             </referenceBlock>
+            <block class="Magento\Framework\View\Element\Html\Link\Current" name="noi-qui-link">
+                <arguments>
+                    <argument name="label" xsi:type="string" translate="true">Nội quy cửa hàng</argument>
+                    <argument name="path" xsi:type="string">noi-quy-cua-hang</argument>
+                </arguments>
+            </block>
         </referenceBlock>
     </body>
 </page>
