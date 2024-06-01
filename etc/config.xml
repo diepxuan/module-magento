@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Dxvn, Inc. All rights reserved.
+ * @author  Tran Ngoc Duc <caothu91@gmail.com>
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <catalog>
+            <seo>
+                <search_terms>0</search_terms>
+            </seo>
+        </catalog>
+        <admin>
+            <security>
+                <use_form_key>0</use_form_key>
+            </security>
+        </admin>
+        <general>
+            <country>
+                <default>VN</default>
+            </country>
+            <locale>
+                <code>vi_VN</code>
+                <weight_unit>kgs</weight_unit>
+                <firstday>1</firstday>
+                <weekend>0,6</weekend>
+            </locale>
+        </general>
+    </default>
+    <stores>
+        <admin>
+        </admin>
+    </stores>
+    <websites>
+        <admin>
+        </admin>
+    </websites>
+</config>
