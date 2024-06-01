@@ -11,4 +11,12 @@
     <type name="Magento\Framework\App\FrontController">
         <plugin name="store_detect_url" type="Diepxuan\Magento\Plugin\App\FrontController"/>
     </type>
+    <type name="Magento\Framework\Url\SecurityInfo">
+        <arguments>
+            <argument name="secureUrlList" xsi:type="array">
+                <item name="contact" xsi:type="string">/lienhe/</item>
+            </argument>
+        </arguments>
+    </type>
+
 </config>
