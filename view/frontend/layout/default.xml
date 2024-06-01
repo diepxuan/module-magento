@@ -3,18 +3,19 @@
     <body>
         <referenceBlock name="footer_links">
             <referenceBlock name="sales-guest-form-link" remove="true"/>
+            <referenceBlock  name="catalog-search-advanced-link" remove="true" />
             <referenceBlock name="privacy-policy-link">
                 <arguments>
                     <argument name="label" xsi:type="string" translate="true">Privacy and Cookie Policy</argument>
                     <argument name="path" xsi:type="string">privacy-policy-cookie-restriction-mode</argument>
                 </arguments>
             </referenceBlock>
-        </referenceBlock>
-        <referenceBlock name="contact-us-link">
-            <arguments>
-                <argument name="label" xsi:type="string" translate="true">Contact Us</argument>
-                <argument name="path" xsi:type="string">lienhe</argument>
-            </arguments>
+            <referenceBlock name="contact-us-link">
+                <arguments>
+                    <argument name="label" xsi:type="string" translate="true">Contact Us</argument>
+                    <argument name="path" xsi:type="string">lienhe</argument>
+                </arguments>
+            </referenceBlock>
         </referenceBlock>
     </body>
 </page>
