@@ -17,6 +17,13 @@
                 <use_form_key>0</use_form_key>
             </security>
         </admin>
+        <currency>
+            <options>
+                <allow>USD,EUR,VND</allow>
+                <base>VND</base>
+                <default>VND</default>
+            </options>
+        </currency>
         <general>
             <country>
                 <default>VN</default>
