@@ -5,9 +5,6 @@ Magento 2 module
 [![Downloads](https://img.shields.io/packagist/dt/diepxuan/module-magento)](https://packagist.org/packages/diepxuan/module-magento)
 [![License](https://img.shields.io/packagist/l/diepxuan/module-magento)](https://packagist.org/packages/diepxuan/module-magento)
 
-* fix loading media store path from database Storage
-* detect store/website by url without ```index.php``` or ```.htaccess```
-
 Installation
 ------------
 
