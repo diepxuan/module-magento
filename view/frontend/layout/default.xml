@@ -23,5 +23,8 @@
                 </arguments>
             </block>
         </referenceBlock>
+        <referenceContainer name="footer">
+            <referenceBlock name="store_switcher" remove="true"/>
+        </referenceContainer>
     </body>
 </page>
