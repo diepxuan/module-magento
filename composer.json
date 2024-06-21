@@ -1,6 +1,6 @@
 {
     "name": "diepxuan/module-magento",
-    "description": "DiepXuan amends for Magento 2",
+    "description": "DiepXuan website base in Magento 2",
     "type": "magento2-module",
     "license": "MIT",
     "authors": [
