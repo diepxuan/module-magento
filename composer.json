@@ -12,7 +12,8 @@
     "require": {
         "diepxuan/module-images": "*",
         "diepxuan/module-eavcleaner": "*",
-        "diepxuan/module-autologin": "*"
+        "diepxuan/module-autologin": "*",
+        "diepxuan/module-multidomain": "*"
     },
     "autoload": {
         "files": [
