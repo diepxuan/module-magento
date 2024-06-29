@@ -9,6 +9,11 @@
             "email": "ductn@diepxuan.com"
         }
     ],
+    "require": {
+        "diepxuan/module-images": "*",
+        "diepxuan/module-eavcleaner": "*",
+        "diepxuan/module-autologin": "*"
+    },
     "autoload": {
         "files": [
             "registration.php"

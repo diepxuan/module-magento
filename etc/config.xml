@@ -8,6 +8,9 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
     <default>
         <web>
+            <default>
+                <cms_no_route>home</cms_no_route>
+            </default>
             <seo>
                 <use_rewrites>1</use_rewrites>
             </seo>
