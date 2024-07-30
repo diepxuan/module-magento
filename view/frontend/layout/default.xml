@@ -3,7 +3,7 @@
     <body>
         <referenceBlock name="footer_links">
             <referenceBlock name="sales-guest-form-link" remove="true"/>
-            <referenceBlock  name="catalog-search-advanced-link" remove="true" />
+            <referenceBlock name="catalog-search-advanced-link" remove="true" />
             <referenceBlock name="privacy-policy-link">
                 <arguments>
                     <argument name="label" xsi:type="string" translate="true">Privacy and Cookie Policy</argument>
@@ -20,6 +20,12 @@
                 <arguments>
                     <argument name="label" xsi:type="string" translate="true">Nội quy cửa hàng</argument>
                     <argument name="path" xsi:type="string">noi-quy-cua-hang</argument>
+                </arguments>
+            </block>
+            <block class="Magento\Framework\View\Element\Html\Link\Current" name="he-thong-cua-hang-link">
+                <arguments>
+                    <argument name="label" xsi:type="string" translate="true">Hệ thống cửa hàng</argument>
+                    <argument name="path" xsi:type="string">he-thong-cua-hang</argument>
                 </arguments>
             </block>
         </referenceBlock>
