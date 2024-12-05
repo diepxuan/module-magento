@@ -1,0 +1,19 @@
+<?php
+
+use Magento\Cms\Block\Widget\Block;
+
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ *
+ * @override Magento_Cms/view/frontend/templates/widget/static_block/default.phtml
+ */
+
+/**
+ * @var Block $block
+ */
+$blockId = $block->getBlockId();
+?>
+<div class="widget block block-static-block block-static-<?php echo $blockId; ?>">
+    <?php echo /* @noEscape */ $block->getText(); ?>
+</div>
