@@ -5,9 +5,10 @@
  * @author  Tran Ngoc Duc <caothu91@gmail.com>
  */
 -->
-<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
     <type name="Magento\Cms\Block\Widget\Block">
         <plugin name="Diepxuan_Magento::overrideWidgetBlockTemplate" type="Diepxuan\Magento\Plugin\Cms\Block\Widget\Block" />
     </type>
+    <virtualType name="Magento\Catalog\Model\Category\Attribute\Backend\DefaultSortby" type="Magento\Catalog\Model\Category\Attribute\Backend\Sortby" xsi:condition="!Diepxuan\Magento\Helper\ClassChecker::isNewVersion()" />
+    <!-- <preference for="Magento\Catalog\Model\Category\Attribute\Backend\DefaultSortby" type="Magento\Catalog\Model\Category\Attribute\Backend\Sortby"/> -->
 </config>
