@@ -10,7 +10,6 @@
         }
     ],
     "require": {
-        "diepxuan/module-images": "*",
         "diepxuan/module-eavcleaner": "*"
     },
     "autoload": {
