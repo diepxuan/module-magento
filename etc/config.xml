@@ -22,6 +22,8 @@
         <catalog>
             <seo>
                 <search_terms>0</search_terms>
+                <product_use_categories>1</product_use_categories>
+                <generate_category_product_rewrites>1</generate_category_product_rewrites>
             </seo>
         </catalog>
         <admin>
@@ -41,6 +43,7 @@
                 <default>VN</default>
             </country>
             <locale>
+                <timezone>Asia/Ho_Chi_Minh</timezone>
                 <code>vi_VN</code>
                 <weight_unit>kgs</weight_unit>
                 <firstday>1</firstday>
